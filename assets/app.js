@@ -276,7 +276,7 @@
     if (!t) return "";
     var slot = D.booking.slots[S.slot] || "";
     return String(t).replace(/\{start\}/g, slot.split("–")[0]).replace(/\{slot\}/g, slot)
-      .replace(/\{date\}/g, DATES[S.date].full).replace(/\{place\}/g, place());
+      .replace(/\{date\}/g, DATES[S.date].full).replace(/\{day\}/g, DATES[S.date].day + " " + MG[DATES[S.date].date.getMonth()]).replace(/\{place\}/g, place());
   }
   function renderSms(st0) {
     var st = {}; for (var p in st0) st[p] = st0[p];

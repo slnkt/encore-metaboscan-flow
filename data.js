@@ -103,8 +103,8 @@ window.PRESENTATION = {
      type: "screen" — экран приложения (id задает, какой экран рисовать);
            "sms" — SMS на экране блокировки; "email" — уведомление о письме.
      Для sms и email: sender — отправитель, text — текст (пусто — баннер без текста;
-     можно задать отдельно { home, club } для выезда и для клуба; {start}, {slot}, {date}, {place}
-     заменяются на время начала, интервал, дату и место из записи),
+     можно задать отдельно { home, club } для выезда и для клуба; {start}, {slot}, {day}, {date}, {place}
+     заменяются на время начала, интервал, день («30 октября»), полную дату и место из записи),
      subject и attachment — для письма, time и day — время и день на экране блокировки
      (day: "today", "eve" — накануне сдачи, "visit" — день сдачи, "results" — день результатов).
      roles — блок «Кто что делает»: ключ участника из roles и что он делает. */
@@ -126,7 +126,8 @@ window.PRESENTATION = {
       ["bioniq", "Получил заявку, дублирует ее в Сеченовский университет"] ] },
     { type: "screen", id: "pending", stage: "Запись", title: "Ожидает подтверждения", roles: [
       ["bioniq", "Менеджер проверяет и подтверждает запись"] ] },
-    { type: "sms", stage: "Запись", title: "SMS: менеджер подтвердил запись", sender: "Bioniq", text: "", day: "today", time: "11:20", roles: [
+    { type: "sms", stage: "Запись", title: "SMS: менеджер подтвердил запись", sender: "Bioniq",
+      text: "Ваша запись на забор крови подтверждена: {day}, {slot}. Как подготовиться, смотрите в личном кабинете.", day: "today", time: "11:20", roles: [
       ["bioniq", "Подтвердил запись, отправил SMS"] ] },
     { type: "screen", id: "confirmed", stage: "Запись", title: "Подтверждена", roles: [
       ["client", "Готовится к сдаче по памятке"] ] },
@@ -138,15 +139,22 @@ window.PRESENTATION = {
       },
       roles: [
       ["bioniq", "Напоминает о записи"] ] },
-    { type: "sms", stage: "Сдача", title: "SMS: накануне в 19:00, подготовка", sender: "Bioniq", text: "", day: "eve", time: "19:00", roles: [
+    { type: "sms", stage: "Сдача", title: "SMS: накануне в 19:00, подготовка", sender: "Bioniq",
+      text: "Завтра забор крови. Не ешьте 10–12 часов до забора, воду пить можно. Памятка по подготовке в личном кабинете.", day: "eve", time: "19:00", roles: [
       ["bioniq", "Напоминает о подготовке"] ] },
-    { type: "sms", stage: "Сдача", title: "SMS: за 2 часа до интервала", sender: "Bioniq", text: "", day: "visit", time: "6:00", roles: [
+    { type: "sms", stage: "Сдача", title: "SMS: за 2 часа до интервала", sender: "Bioniq",
+      text: {
+        home: "Медсестра выезжает к вам и будет в {slot}.",
+        club: "Ждем вас на забор крови в клубе Encore сегодня в {start}."
+      }, day: "visit", time: "6:00", roles: [
       ["bioniq", "Медсестра выезжает к клиенту или ждет в клубе"] ] },
-    { type: "sms", stage: "Сдача", title: "SMS: кровь сдана", sender: "Bioniq", text: "", day: "visit", time: "9:15", roles: [
+    { type: "sms", stage: "Сдача", title: "SMS: кровь сдана", sender: "Bioniq",
+      text: "Кровь взята и передается в лабораторию. Результаты будут готовы в течение 6 рабочих дней.", day: "visit", time: "9:15", roles: [
       ["bioniq", "Взял кровь и в течение пары часов доставляет ее в лабораторию Сеченовского университета вместе с анкетой"] ] },
     { type: "screen", id: "processing", stage: "Результаты", title: "Результаты в обработке", roles: [
       ["sechenov", "Проводит анализ, специалисты проверяют результаты и отчеты перед отправкой"] ] },
-    { type: "sms", stage: "Результаты", title: "SMS: результаты готовы", sender: "Bioniq", text: "", day: "results", time: "12:30", roles: [
+    { type: "sms", stage: "Результаты", title: "SMS: результаты готовы", sender: "Bioniq",
+      text: "Результаты МетабоСкан готовы. Смотрите их в личном кабинете, отчет отправили на почту.", day: "results", time: "12:30", roles: [
       ["sechenov", "Передал результаты и отчеты в Bioniq"],
       ["bioniq", "Загрузил результаты в личный кабинет"] ] },
     { type: "email", stage: "Результаты", title: "Письмо с результатами", sender: "Bioniq", subject: "Результаты МетабоСкан готовы", attachment: "Отчет МетабоСкан.pdf", day: "results", time: "12:31", roles: [
