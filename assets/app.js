@@ -27,6 +27,7 @@
   var MG = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
   var now = new Date(), today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   function addDays(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+  function addWorkDays(d, n) { var r = d; while (n > 0) { r = addDays(r, 1); if (r.getDay() !== 0 && r.getDay() !== 6) n--; } return r; }
   var DATES = [];
   for (var k0 = 1; k0 <= (D.booking.daysAhead || 3); k0++) {
     var d0 = addDays(today, k0);
@@ -36,7 +37,7 @@
     var visit = DATES[S.date].date, d = today;
     if (day === "eve") d = addDays(visit, -1);
     else if (day === "visit") d = visit;
-    else if (day === "results") d = addDays(visit, 7);
+    else if (day === "results") d = addWorkDays(visit, D.results.workDays || 8);
     return WDF[d.getDay()] + ", " + d.getDate() + " " + MG[d.getMonth()];
   }
 
