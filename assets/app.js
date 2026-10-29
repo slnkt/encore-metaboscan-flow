@@ -270,7 +270,17 @@
       '<div class="lock-time"><div class="d">' + esc(lockDay(st.day)) + '</div><div class="t">' + esc(st.time || "9:41") + "</div></div>" +
       banner + '<div class="lock-hint">' + (hint || "") + '</div><div class="lock-bar"></div></div>';
   }
-  function renderSms(st) {
+  function smsText(st) {
+    var t = st.text;
+    if (t && typeof t === "object") t = t[method().id] || t.home || "";
+    if (!t) return "";
+    var slot = D.booking.slots[S.slot] || "";
+    return String(t).replace(/\{start\}/g, slot.split("–")[0]).replace(/\{slot\}/g, slot)
+      .replace(/\{date\}/g, DATES[S.date].full).replace(/\{place\}/g, place());
+  }
+  function renderSms(st0) {
+    var st = {}; for (var p in st0) st[p] = st0[p];
+    st.text = smsText(st0);
     if (S.msgOpen && st.text) {
       return statusbar(st.time) + '<div class="mail-head"><button type="button" class="mail-back" data-act="msgback">' + ic("i-arrow-l") + "Сообщения</button></div>" +
         '<div class="msg-who"><span class="mail-ava">' + ic("i-bq") + "</span><b>" + esc(st.sender) + "</b></div>" +
