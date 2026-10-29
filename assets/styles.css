@@ -377,3 +377,44 @@ html,body{overflow-x:hidden}
 .statusbar .ic svg:nth-child(2){width:16px}
 .statusbar .ic svg:nth-child(3){width:24px}
 .seg.full button{white-space:nowrap;font-size:11px}
+
+/* ===== v3 ===== */
+.screen-inner{display:flex;flex-direction:column;height:100%}
+.auth-btn{width:100%;border:none;font-family:var(--font)}
+.auth-btn.reg{background:var(--bg);color:var(--dark)}
+.auth-note{font-size:11px;line-height:1.45;color:var(--muted-l);text-align:center;margin-top:4px}
+button.fmt-row{width:100%;font-family:var(--font);color:var(--dark);cursor:pointer;text-align:left}
+.date-note{font-size:10.5px;color:var(--muted-l);margin-top:7px;line-height:1.4}
+.promo{margin-bottom:14px}
+
+/* Уведомление о письме */
+.ntf-sub{font-size:12px;line-height:1.4;color:#2c3e46}
+div.ntf{cursor:default}
+
+/* Переписка SMS */
+.msg-who{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 0 12px;border-bottom:1px solid #eef3f6}
+.msg-who b{font-size:13px;font-weight:600}
+.chat{flex:1;display:flex;flex-direction:column;gap:9px;padding:12px 15px 8px;overflow-y:auto;background:#F7FBFD}
+.daydiv{align-self:center;font-size:10px;color:var(--muted-l);background:#eaf3f8;padding:3px 10px;border-radius:10px}
+.bubble{max-width:82%;padding:10px 12px;font-size:12.5px;line-height:1.45;border-radius:15px}
+.bubble.in{align-self:flex-start;background:#fff;border:1px solid #e8f0f4;border-bottom-left-radius:5px}
+
+/* Кто что делает */
+.who{margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:0 4px 14px rgba(5,19,26,.05);text-align:left}
+.who-h{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:10px}
+.who-row{display:flex;gap:11px;align-items:flex-start}
+.who-row+.who-row{margin-top:12px;padding-top:12px;border-top:1px solid #eef3f6}
+.who-row b{display:block;font-size:12.5px;font-weight:600;color:var(--dark);margin-bottom:2px}
+.who-row span{font-size:12px;line-height:1.45;color:var(--muted)}
+.who-ic{width:30px;height:30px;flex:0 0 30px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700}
+.who-ic svg{width:16px;height:16px}
+.who-ic.client{background:#eef4f7;color:var(--dark)}
+.who-ic.encore{background:var(--dark)}
+.who-ic.bioniq{background:var(--grad)}
+.who-ic.bioniq svg{width:8px;height:15px}
+.who-ic.sechenov{background:var(--bg);color:var(--blue)}
+@media (max-width:1023px){
+  .desc .caption{max-width:440px;text-align:left}
+  .who{margin-top:0}
+}
+.body>*{flex-shrink:0}
