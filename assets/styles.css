@@ -438,3 +438,10 @@ html{scroll-behavior:smooth}
   .offer-card b{flex:1;min-width:0}
   .offer-price{margin-top:0;padding-top:0;font-size:18px}
 }
+/* Кнопка к ценам: основной градиент, стрелка вниз */
+.offer-link{display:inline-flex;align-items:center;gap:12px;margin-top:14px;background:var(--grad);color:#fff;border-radius:14px;padding:10px 10px 10px 16px;font-size:13px;font-weight:500;box-shadow:0 10px 22px rgba(16,152,212,.28);transition:transform .15s,box-shadow .15s}
+.offer-link b{font-weight:600}
+.offer-link:hover{background:var(--grad);transform:translateY(-1px);box-shadow:0 14px 28px rgba(16,152,212,.34)}
+.offer-link .ol-ar{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;flex:0 0 28px}
+.offer-link .ol-ar svg{width:15px;height:15px;transform:rotate(90deg)}
+.offer-link:focus-visible{outline:3px solid #63BCE3;outline-offset:2px}

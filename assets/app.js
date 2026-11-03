@@ -473,7 +473,12 @@
         return '<div class="offer-card"><span class="offer-pr">' + esc(D.product.name) + '</span><b>' + esc(x.name) + '</b><div class="offer-price">' + rub(x.price) + "</div></div>";
       }).join("") + "</div>";
     sec.hidden = false;
-    if (link) { link.textContent = o.title || "Стоимость"; link.hidden = false; }
+    if (link) {
+      var min = Math.min.apply(null, items.map(function (x) { return x.price; }));
+      link.innerHTML = '<span class="ol-t"><b>' + esc(o.cta || "Стоимость") + "</b> от " + rub(min) + '</span><span class="ol-ar" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>';
+      link.setAttribute("aria-label", (o.cta || "Стоимость") + " от " + rub(min) + ", перейти к ценам ниже");
+      link.hidden = false;
+    }
   })();
 
   /* ---------- results data ---------- */
