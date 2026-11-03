@@ -462,6 +462,20 @@
   dd.querySelector("summary").addEventListener("click", function (e) { if (mq.matches) e.preventDefault(); });
   document.addEventListener("click", function (e) { if (!mq.matches && dd.open && !dd.contains(e.target)) dd.open = false; });
 
+  /* ---------- commercial offer ---------- */
+  (function () {
+    var o = D.offer, sec = document.getElementById("offer"), link = document.getElementById("offerLink");
+    var items = (o && o.items || []).filter(function (x) { return x && x.name && x.price; });
+    if (!sec || !items.length) return;
+    function rub(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0") + "\u00a0₽"; }
+    sec.innerHTML = '<h2 id="offerTitle">' + esc(o.title || "Стоимость") + "</h2>" +
+      '<div class="offer-grid">' + items.map(function (x) {
+        return '<div class="offer-card"><span class="offer-pr">' + esc(D.product.name) + '</span><b>' + esc(x.name) + '</b><div class="offer-price">' + rub(x.price) + "</div></div>";
+      }).join("") + "</div>";
+    sec.hidden = false;
+    if (link) { link.textContent = o.title || "Стоимость"; link.hidden = false; }
+  })();
+
   /* ---------- results data ---------- */
   renderAll();
   chrome();
